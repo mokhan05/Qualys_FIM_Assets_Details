@@ -71,7 +71,7 @@ Data_Format()
 
 CSV_fun()
 {
-    echo -e "\n\nList of Assets on which FIM is activated but not running is created under assets_list.csv created"
+    echo -e "\n\nList of Assets on which FIM is activated but not running is created under assets_list.csv"
     echo "Host Name,IP Address,Agent Version,Operating System,Last LoggedOn User,Agent Status,Agent OS Status,Manifest Status,FIM Activated" > assets_list.csv
     jq '.[].data | (.name + "," + .interfaces[0].address + "," + .agentVersion + "," + .operatingSystem + "," + .lastLoggedOnUser + "," + .agentService.status + "," + .agentService.osStatus + "," + .manifest.status + "," + (.activated | tostring))' output.json | sed 's|"| |g' >> assets_list.csv
 }
